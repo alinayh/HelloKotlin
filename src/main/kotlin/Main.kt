@@ -1,4 +1,6 @@
 import io.ktor.application.call
+import io.ktor.http.HttpStatusCode
+import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
@@ -17,6 +19,15 @@ fun main() {
             }
             get("/test") {
                 call.respondText("Testing...")
+            }
+            get("/add/{first}/{second}") {
+                try {
+                    val first = call.parameters["first"]!!.toInt()
+                    val second = call.parameters["second"]!!.toInt()
+                    call.respondText((first + second).toString())
+                } catch (e: Exception) {
+                    call.respond(HttpStatusCode.BadRequest)
+                }
             }
         }
     }.start(wait = true)
