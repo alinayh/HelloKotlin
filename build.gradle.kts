@@ -17,6 +17,10 @@ tasks.withType<Test> {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
+    val ktorVersion = "1.3.0"
+    implementation("io.ktor:ktor-server-core:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty:$ktorVersion")
+
     testImplementation("io.kotest:kotest-runner-junit5-jvm:4.0.2") // for kotest framework
     testImplementation("io.kotest:kotest-assertions-core-jvm:4.0.2") // for kotest core jvm assertions
     testImplementation("io.kotest:kotest-property-jvm:4.0.2") // for kotest property test
